@@ -18,8 +18,14 @@ Static site for Corpania Productions. No build step — plain HTML, served as-is
 
 The web uploader accepts at most 100 files per drag. Do it in two passes:
 
-  Pass 1 — the 5 .html files + support.js + CNAME + .nojekyll + README.md   (9 files)
-  Pass 2 — the whole `assets` folder                                       (71 files)
+  Pass 1 — the 5 .html files + support.js + CNAME + README.md   (8 files, ~1 MB)
+  Pass 2 — assets/awards + assets/brand + assets/networks + assets/training + assets/image-slot.js
+  Pass 3 — assets/press + assets/work
+  Pass 4 — assets/video/corpania-intro.mp4  (12.4 MB — on its own)
+
+Images are already compressed for the web (total ~6 MB excluding the video).
+The browser uploader also caps TOTAL upload size, not just file count, which is
+why the video goes up by itself.
 
 Each pass is its own commit. Drag the `assets` FOLDER itself (not its contents)
 so the subfolder paths are preserved.
