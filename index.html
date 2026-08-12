@@ -21,8 +21,8 @@
 <helmet>
 <script>
   (function () {
-    if (window.__cpNavHooked) return;
-    window.__cpNavHooked = true;
+    // remember that the next page load came from an in-site link click,
+    // so the opening animation stays out of the way while browsing
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
       if (!a) return;
@@ -327,7 +327,7 @@
     <div id="hm-films" style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
       <a href="films.html" class="cp-card" style="display:block; color:#E9E3FB; border-radius:6px; overflow:hidden; background:rgba(36,16,70,0.60); backdrop-filter:blur(12px); border:1px solid rgba(147,147,251,0.22);">
         <img src="assets/work/on-wings-of-eagles.jpg" alt="On Wings of Eagles" style="width:100%; height:auto; display:block; box-shadow:0 14px 30px rgba(6,2,18,0.6);">
-        <div style="padding:16px 16px 18px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.12em; color:#9393FB; text-transform:uppercase; margin-bottom:7px;">Executive Producer</div><h3 style="font-weight:700; font-size:17px; line-height:1.15; margin:0;">On Wings of Eagles</h3><p style="font-size:12.5px; color:#BFB9D7; margin:5px 0 0;">Joseph Fiennes · Theatrical</p></div>
+        <div style="padding:16px 16px 18px;"><div style="font-size:10.5px; font-weight:700; letter-spacing:0.12em; color:#9393FB; text-transform:uppercase; margin-bottom:7px;">Co-Executive Producer</div><h3 style="font-weight:700; font-size:17px; line-height:1.15; margin:0;">On Wings of Eagles</h3><p style="font-size:12.5px; color:#BFB9D7; margin:5px 0 0;">Joseph Fiennes · Theatrical</p></div>
       </a>
       <a href="films.html" class="cp-card" style="display:block; color:#E9E3FB; border-radius:6px; overflow:hidden; background:rgba(36,16,70,0.60); backdrop-filter:blur(12px); border:1px solid rgba(147,147,251,0.22);">
         <img src="assets/work/mining-for-ruby.jpg" alt="Mining for Ruby" style="width:100%; height:auto; display:block; box-shadow:0 14px 30px rgba(6,2,18,0.6);">
