@@ -15,13 +15,37 @@
 <body>
 <x-dc>
 <helmet>
+<script>
+  (function () {
+    if (window.__cpNavHooked) return;
+    window.__cpNavHooked = true;
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (a.target === '_blank') return;
+      if (/^(https?:|mailto:|tel:|#)/i.test(href)) return;
+      if (!/\.html?($|[?#])/i.test(href)) return;
+      try { sessionStorage.setItem('cp_nav', '1'); } catch (err) {}
+    }, true);
+  })();
+</script>
+
 <link rel="preload" as="video" href="assets/video/corpania-intro.mp4">
 <script>
   (function () {
     try {
+      // this script can be evaluated more than once per document; decide only on the first pass
+      if (window.__lvGateDone) return;
+      window.__lvGateDone = true;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var force = /[?&]intro=1/.test(location.search);
-      if (!force && localStorage.getItem('corpania_intro_seen') === 'true') return;
+      var internal = false;
+      try {
+        internal = sessionStorage.getItem('cp_nav') === '1';
+        if (internal) sessionStorage.removeItem('cp_nav');
+      } catch (e) { internal = false; }
+      if (!force && internal) return;
       document.documentElement.setAttribute('data-lv-curtain', '');
       window.__lvCurtainFailOpen = setTimeout(function () {
         document.documentElement.removeAttribute('data-lv-curtain');

@@ -15,6 +15,22 @@
 <body>
 <x-dc>
 <helmet>
+<script>
+  (function () {
+    if (window.__cpNavHooked) return;
+    window.__cpNavHooked = true;
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (a.target === '_blank') return;
+      if (/^(https?:|mailto:|tel:|#)/i.test(href)) return;
+      if (!/\.html?($|[?#])/i.test(href)) return;
+      try { sessionStorage.setItem('cp_nav', '1'); } catch (err) {}
+    }, true);
+  })();
+</script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
